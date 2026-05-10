@@ -2,7 +2,7 @@ function help-text --description='Generate help reference text'
     set --function output_name (set_color --dim)(status current-function)(set_color normal)
 
     # parse arguments
-    argparse 'h/help&' 'm/multi-pos&' 'p/positional=+&' -- {$argv}
+    argparse 'h/help&' 'm/multi-pos&' 'p/positional=+&' 's/switch=+&' -- {$argv}
 
     if set --query --local _flag_help
         echo 'print help reference using the function' # pending
@@ -28,10 +28,13 @@ function help-text --description='Generate help reference text'
         echo \ (set_color --dim yellow)"$argv"(set_color normal)
     end
     function heading --description='Create headings for headers'
-        echo (set_color --bold --underline --underline-color=brblue blue)"$argv"(set_color normal)(set_color brblue):(set_color normal)
+        echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color normal)(set_color brblue):(set_color normal)
     end
     function header --description='Create headers for subheads'
         echo (set_color --bold green)"$argv"(set_color normal)
+    end
+    function title --description='Create a title for subheads'
+        echo (set_color --underline{,-color=brcyan} --bold cyan)"$argv"(set_color normal)
     end
     function subhead --description='Create an attribute set header'
         echo (set_color --italics green)"$argv"(set_color normal)
@@ -47,6 +50,8 @@ function help-text --description='Generate help reference text'
         echo {$big}
     end
 
+    # Output
+    ## Description
     echo (set_color brmagenta){$command_description}(set_color normal)\n
 
     ## Arguments
@@ -54,19 +59,49 @@ function help-text --description='Generate help reference text'
     if set --local --query _flag_positional
         heading Positional
 
+        # data
         set --local names
         set --local descriptions
-        for positional_argument in (string trim {$_flag_positional})
+        for positional_argument in (output-format {$_flag_positional})
             set --local details (string split --max=2 ' | ' {$positional_argument})
             set --append names {$details[1]}
             set --append descriptions {$details[2]}
         end
-        set --local largest_name_length (largest-length {$names})
-        set --local largest_description_length (largest-length {$descriptions})
+        set --local largest_name_len (largest-length {$names})
 
-        for i in (seq 1 (count {$names}))
-            set --local --query _flag_multi-pos && echo -n (bullet {$i}.)
-            echo (header (string pad --right --width={$largest_name_length} {$names[$i]})) {$sep} (string pad --right --width={$largest_description_length} {$descriptions[$i]})
+        # print
+        for i in (seq 1 (count {$_flag_positional}))
+            set --local --query _flag_multi_pos || echo -n (bullet {$i}.)
+            echo \ (header (string pad --right --width={$largest_name_len} {$names[$i]})) {$sep} {$descriptions[$i]}
+        end
+    end
+
+    ### Switches    
+    if set --local --query _flag_switch
+        heading Switches
+
+        # data
+        set --local short_flags
+        set --local long_flags
+        set --local descriptions
+        for switch in (output-format {$_flag_switch})
+            set --local details (string split --max=2 ' | ' {$switch})
+            set --local flags (string split --max=2 : {$details[1]})
+            set --append descriptions {$details[2]}
+            set --local short_flag {$flags[2]}
+            if test -z {$short_flag}
+                set --append short_flags (set_color brred)\~
+            else
+                set --append short_flags {$short_flag}
+            end
+            set --append long_flags {$flags[1]}
+        end
+        set --local largest_longFlag_len (largest-length {$long_flags})
+
+        echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
+        # print
+        for i in (seq 1 (count {$_flag_switch}))
+            echo (bullet •) (subhead (string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})) {$sep} {$descriptions[$i]}
         end
     end
 end
