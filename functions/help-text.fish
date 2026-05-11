@@ -5,7 +5,13 @@ function help-text --description='Generate help reference text'
     argparse 'h/help&' 'v/varg&' 'p/positional=+&' 's/switch=+&' -- {$argv}
 
     if set --query --local _flag_help
-        echo 'print help reference using the function' # pending
+        help-text 'Generate help reference text' \
+            --position='Description | The purpose of the command' \
+            --switch={
+                'varg:v | Use variable positional arguments',
+                'positional:p | Individual positional arguments',
+                'switch:s | Individual switches'
+            }
         return
     end
     begin
