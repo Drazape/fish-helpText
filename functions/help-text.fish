@@ -36,14 +36,8 @@ function help-text --description='Generate help reference text'
     function heading --description='Create headings for headers'
         echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color normal)(set_color brblue):(set_color normal)
     end
-    function header --description='Create headers for subheads'
-        echo (set_color --bold green)"$argv"(set_color normal)
-    end
     function title --description='Create a title for subheads'
         echo (set_color --underline{,-color=brcyan} --bold cyan)"$argv"(set_color normal)
-    end
-    function subhead --description='Create an attribute set header'
-        echo (set_color --italics green)"$argv"(set_color normal)
     end
     set --local sep \t(set_color --dim)│(set_color normal)
 
@@ -78,7 +72,7 @@ function help-text --description='Generate help reference text'
         # print
         for i in (seq 1 (count {$_flag_positional}))
             set --local --query _flag_varg || echo -n (bullet {$i}.)
-            echo \ (header (string pad --right --width={$largest_name_len} {$names[$i]})) {$sep} {$descriptions[$i]}
+            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} {$names[$i]})(set_color normal) {$sep} {$descriptions[$i]}
         end
     end
 
@@ -107,7 +101,7 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
         for i in (seq 1 (count {$_flag_switch}))
-            echo (bullet •) (subhead (string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})) {$sep} {$descriptions[$i]}
+            echo (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} {$descriptions[$i]}
         end
     end
 end
