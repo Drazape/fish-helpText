@@ -2,7 +2,7 @@ function help-text --description='Generate help reference text'
     set --function output_name (set_color --dim)(status current-function)(set_color normal)
 
     # parse arguments
-    argparse 'h/help&' 'm/multi-pos&' 'p/positional=+&' 's/switch=+&' -- {$argv}
+    argparse 'h/help&' 'v/varg&' 'p/positional=+&' 's/switch=+&' -- {$argv}
 
     if set --query --local _flag_help
         echo 'print help reference using the function' # pending
@@ -71,7 +71,7 @@ function help-text --description='Generate help reference text'
 
         # print
         for i in (seq 1 (count {$_flag_positional}))
-            set --local --query _flag_multi_pos || echo -n (bullet {$i}.)
+            set --local --query _flag_varg || echo -n (bullet {$i}.)
             echo \ (header (string pad --right --width={$largest_name_len} {$names[$i]})) {$sep} {$descriptions[$i]}
         end
     end
