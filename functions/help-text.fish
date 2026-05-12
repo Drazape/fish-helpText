@@ -29,6 +29,13 @@ function help-text --description='Generate help reference text'
     function output-format --description='Slightly dim semi-colon'
         string trim {$argv} | string replace \; (set_color white)\;(set_color normal)
     end
+    function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized'
+        set --function italicized {$argv[-1]}
+        for name in {$argv[1..-2]}
+            set --function italicized (string replace {$name} (set_color --italics){$name}(set_color normal) {$italicized})
+        end
+        echo {$italicized}
+    end
 
     function bullet --description='Create colored bullet points'
         echo \ (set_color --dim yellow)"$argv"(set_color normal)
@@ -60,19 +67,19 @@ function help-text --description='Generate help reference text'
         heading Positional
 
         # data
-        set --local names
+        set --function pos_names
         set --local descriptions
         for positional_argument in (output-format {$_flag_positional})
             set --local details (string split --max=2 ' | ' {$positional_argument})
-            set --append names {$details[1]}
+            set --append pos_names {$details[1]}
             set --append descriptions {$details[2]}
         end
-        set --local largest_name_len (largest-length {$names})
+        set --local largest_name_len (largest-length {$pos_names})
 
         # print
         for i in (seq 1 (count {$_flag_positional}))
             set --local --query _flag_varg || echo -n (bullet {$i}.)
-            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} {$names[$i]})(set_color normal) {$sep} {$descriptions[$i]}
+            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} {$pos_names[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
 
@@ -101,7 +108,7 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
         for i in (seq 1 (count {$_flag_switch}))
-            echo (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} {$descriptions[$i]}
+            echo (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
 end
