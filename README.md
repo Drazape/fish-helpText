@@ -33,7 +33,7 @@ begin
 		}
 end
 ```
-<img width="1834" height="445" alt="sub-abbr" src="https://github.com/user-attachments/assets/503cc50d-8184-4473-97bc-5882bfee979c" />
+<img width="1834" height="445" alt="sub-abbr" src="https://github.com/user-attachments/assets/13101e4d-8fbe-4c43-ada8-75ceb8f0d6d8" />
 
 > [!TIP]
 > Create an issue to get your project listed here. If it stands out, it can also be used as a demonstration here.

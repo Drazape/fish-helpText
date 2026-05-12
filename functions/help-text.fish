@@ -27,7 +27,10 @@ function help-text --description='Generate help reference text'
 
     # common stuff
     function output-format --description='Slightly dim semi-colon'
-        string trim {$argv} | string replace \; (set_color white)\;(set_color normal)
+        function slight-dim
+            echo (set_color white)"$argv"(set_color normal)
+        end
+        string trim {$argv} | string replace \; (slight-dim \;) | string replace , (slight-dim ,) | string replace . (slight-dim .)
     end
     function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized'
         set --function italicized {$argv[-1]}
