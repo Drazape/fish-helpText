@@ -32,8 +32,9 @@ function help-text --description='Generate help reference text'
         end
         string trim {$argv} | string replace \; (slight-dim \;) | string replace , (slight-dim ,) | string replace . (slight-dim .)
     end
-    function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized'
+    function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized' --inherit-variable=_flag_varg
         set --function italicized {$argv[-1]}
+        set --query --local _flag_varg && echo {$italicized} && return
         for name in {$argv[1..-2]}
             set --function italicized (string replace {$name} (set_color --italics){$name}(set_color normal) {$italicized})
         end
