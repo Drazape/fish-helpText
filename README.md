@@ -10,7 +10,7 @@ help-text 'Generate help reference text' \
 		'varg:v | Use variable positional arguments',
 		'positional:p | Individual positional arguments',
 		'switch:s | Individual switches'
-    }
+	}
 ```
 <img width="1839" height="593" alt="help-text" src="https://github.com/user-attachments/assets/94911288-a135-4b79-8492-ad4aeab1f9e5" />
 
@@ -20,20 +20,20 @@ begin
 	set --local inherited \ (set_color white)'(inherited from '(set_color normal)(set_color --background=red)abbr(set_color normal)(set_color white)\)(set_color normal)
 	help-text 'Abbreviate subcommands' \
 		--positional={
-			'Base Command | Comes before the Sub-Command; flags are ignored by default', 
+			'+Initial Args | All arguments that come before the Sub-Command', 
 			'Sub-Command | Comes after the Base Command; replaced by the Expansion',
 			'Expansion | Replaces the Sub-Command'
 		} \
 		--switch={
 			'help:h | Show this reference manual',
-			'norun0:0  | Disable '(set_color --background=red)run0(set_color normal)' toleration for abbreviations',
+			'norun0:0 | Disable '(set_color --background=red)run0(set_color normal)' toleration for abbreviations',
 			'regard-flags:s | Acknowledge flags in the Base Command',
 			'set-cursor:c | Position the cursor at '(set_color --background=brblack)%(set_color normal)' post-expansion'{$inherited},
 			'regex:r | Match Sub-Command with Regex. Essential for multiple Base Commands'{$inherited}
 		}
 end
 ```
-<img width="1834" height="445" alt="sub-abbr" src="https://github.com/user-attachments/assets/13101e4d-8fbe-4c43-ada8-75ceb8f0d6d8" />
+<img width="1377" height="342" alt="sub-abbr" src="https://github.com/user-attachments/assets/b677e4ef-660b-40b8-a35e-81fd65d35d46" />
 
 > [!TIP]
 > [Discover programs that use this library](https://github.com/topics/fish-helptext)
