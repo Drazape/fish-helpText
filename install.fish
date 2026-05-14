@@ -11,7 +11,7 @@ function cleanup_temporary_repository --description='Nuke temporary repository o
 end
 
 begin
-    set --local proj_name fish-subAbbr
+    set --local proj_name fish-helpText
     # Clone repository to temporary directory
     set --global -- repository_dir {$proj_name}-'XXXXXXXXX'
     begin
