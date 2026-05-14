@@ -42,7 +42,8 @@ function help-text --description='Generate help reference text'
     end
 
     function bullet --description='Create colored bullet points'
-        echo \ (set_color --dim yellow)"$argv"(set_color normal)
+        string match --entire --regex --quiet -- ^- {$argv} || echo -n ' '
+        echo (set_color --dim yellow)"$argv"(set_color normal)
     end
     function heading --description='Create headings for headers'
         echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color normal)(set_color brblue):(set_color normal)
@@ -71,18 +72,34 @@ function help-text --description='Generate help reference text'
         heading Positional
 
         # data
-        set --function pos_names
-        set --local descriptions
+        set --function varpos_index 0
         for positional_argument in (output-format {$_flag_positional})
             set --local details (string split --max=2 ' | ' {$positional_argument})
-            set --append pos_names {$details[1]}
-            set --append descriptions {$details[2]}
+            set --append --function -- descriptions {$details[2]}
+            set --local pos_details {$details[1]}
+            if set --local --query _flag_varg || string match --regex --entire --quiet -- '^\+' {$pos_details}
+                set --function varpos_index (count {$descriptions})
+                set pos_details (string sub --start=2 {$pos_details})
+            end
+            set --append --function pos_names {$pos_details}
         end
         set --local largest_name_len (largest-length {$pos_names})
 
         # print
+        set --local varpos_left
         for i in (seq 1 (count {$_flag_positional}))
-            set --local --query _flag_varg || echo -n (bullet {$i}.)
+            if ! set --local --query _flag_varg
+                if test {$varpos_index} -eq 0
+                    echo -n (bullet {$i}.)
+                else if test {$i} -eq {$varpos_index}
+                    echo -n (bullet +)
+                    set --local --erase varpos_left
+                else if set --query --local varpos_left
+                    echo -n (bullet {$i})
+                else
+                    echo -n (bullet (math {$i} - (count {$pos_names}) - 1))
+                end
+            end
             echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} {$pos_names[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end

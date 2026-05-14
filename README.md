@@ -20,7 +20,7 @@ begin
 	set --local inherited \ (set_color white)'(inherited from '(set_color normal)(set_color --background=red)abbr(set_color normal)(set_color white)\)(set_color normal)
 	help-text 'Abbreviate subcommands' \
 		--positional={
-			'Base Command | Comes before the Sub-Command; flags are ignored by default', 
+			'+Base Command | Comes before the Sub-Command; flags are ignored by default', 
 			'Sub-Command | Comes after the Base Command; replaced by the Expansion',
 			'Expansion | Replaces the Sub-Command'
 		} \
@@ -33,7 +33,7 @@ begin
 		}
 end
 ```
-<img width="1834" height="445" alt="sub-abbr" src="https://github.com/user-attachments/assets/13101e4d-8fbe-4c43-ada8-75ceb8f0d6d8" />
+<img width="1377" height="342" alt="sub-abbr" src="https://github.com/user-attachments/assets/b677e4ef-660b-40b8-a35e-81fd65d35d46" />
 
 > [!TIP]
 > [Discover programs that use this library](https://github.com/topics/fish-helptext)
