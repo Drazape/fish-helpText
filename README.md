@@ -6,12 +6,12 @@ Generate formatted console help reference texts. Primarily used by other Fish pr
 ```fish
 help-text 'Generate help reference text' \
 	--position='Description | The purpose of the command' \
-	--switch={
+	--flag={
 		'positional:p | Individual positional arguments',
-		'switch:s | Individual switches'
+		'flag:f | Individual switches'
 	}
 ```
-<img width="1839" height="593" alt="help-text" src="https://github.com/user-attachments/assets/94911288-a135-4b79-8492-ad4aeab1f9e5" />
+<img width="1894" height="560" alt="help-text (self)" src="https://github.com/user-attachments/assets/49680185-8e6f-42b9-a363-aac773890734" />
 
 ## [fish-subAbbr](https://github.com/Drazape/fish-subAbbr "Simplify abbrevating subcommands")
 ```fish
