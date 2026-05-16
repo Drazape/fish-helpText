@@ -133,7 +133,7 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
+            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
 end
