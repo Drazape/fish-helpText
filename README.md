@@ -7,7 +7,6 @@ Generate formatted console help reference texts. Primarily used by other Fish pr
 help-text 'Generate help reference text' \
 	--position='Description | The purpose of the command' \
 	--switch={
-		'varg:v | Use variable positional arguments',
 		'positional:p | Individual positional arguments',
 		'switch:s | Individual switches'
 	}
@@ -49,9 +48,6 @@ Create personal Sub-Command abbreviations in the scope
 - **Help**: Show a [reference manual](#help-text-self) — consisting of the [purpose](#Purpose "The purpose of the library") & [arguments](#Arguments "Descriptions on all the supported arguments")
 	- **Long**: *help*
 	- **Short**: *h*
-- ***Var*iable *Ar*guments**: When the number of arguments that could be supplied is unknown
-	- **Long**: *v*
-	- **Short**: *varg*
 - **Positional Argument**: Individual details of the positional arguments
 	- **Long**: *positional*
 	- **Short**: *p*
