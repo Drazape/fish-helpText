@@ -2,12 +2,12 @@ function help-text --description='Generate help reference text'
     set --function -- output_name (set_color --dim)(status current-function)(set_color normal)
 
     # parse arguments
-    argparse 'h/help&' 'p/positional=+&' 's/switch=+&' -- {$argv}
+    argparse 'h/help&' 'p/positional=+&' 'f/flag=+&' -- {$argv}
 
     if set --query --local -- _flag_help
         help-text 'Generate help reference text' \
             --position='Description | The purpose of the command' \
-            --switch={
+            --flag={
                 'positional:p | Individual positional arguments',
                 'switch:s | Individual switches'
             }
@@ -109,14 +109,14 @@ function help-text --description='Generate help reference text'
     end
 
     ### Switches    
-    if set --local --query -- _flag_switch
+    if set --local --query -- _flag_flag
         heading Switches
 
         # data
         set --local -- short_flags
         set --local -- long_flags
         set --local -- descriptions
-        for switch in (output-format {$_flag_switch})
+        for switch in (output-format {$_flag_flag})
             set --local -- details (string split --max=2 -- ' | ' {$switch})
             set --local -- flags (string split --max=2 -- : {$details[1]})
             set --append -- descriptions {$details[2]}
@@ -132,7 +132,7 @@ function help-text --description='Generate help reference text'
 
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
-        for i in (seq 1 (count {$_flag_switch}))
+        for i in (seq 1 (count {$_flag_flag}))
             echo (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
