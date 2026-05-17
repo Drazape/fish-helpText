@@ -92,12 +92,12 @@ function help-text --description='Generate help reference text'
         set --local -- varpos_left
         for i in (seq 1 (count {$_flag_positional}))
             if test {$none_index} -eq {$i}
-                echo -n \ (bullet -)' '
+                echo -n \ (bullet -)
                 set -- subtract_none 1
             else if test {$varpos_index} -eq 0
                 echo -n \ (bullet (math {$i} - {$subtract_none}).)
             else if test {$i} -eq {$varpos_index}
-                echo -n \ (bullet +)' '
+                echo -n \ (bullet +)
                 set --local --erase varpos_left
             else if set --query --local -- varpos_left
                 echo -n \ (bullet (math {$i} - {$subtract_none}))
