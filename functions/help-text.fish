@@ -66,7 +66,7 @@ function help-text --description='Generate help reference text'
     ## Arguments
     ### Positional
     if set --local --query -- _flag_positional
-        heading Positional
+        heading Positionals
 
         # data
         set --function -- varpos_index 0
@@ -110,7 +110,7 @@ function help-text --description='Generate help reference text'
 
     ### Switches    
     if set --local --query -- _flag_flag
-        heading Switches
+        heading Flags
 
         # data
         set --local -- short_flags
