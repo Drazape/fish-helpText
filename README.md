@@ -37,25 +37,8 @@ end
 > [!TIP]
 > [Discover programs that use this library](https://github.com/topics/fish-helptext)
 
----
-
-# Usage
-Create personal Sub-Command abbreviations in the scope
-## Arguments
-### Positional (single)
-**Description**: The purpose of the command
-### Switches
-- **Help**: Show a [reference manual](#help-text-self) — consisting of the [purpose](#Purpose "The purpose of the library") & [arguments](#Arguments "Descriptions on all the supported arguments")
-	- **Long**: *help*
-	- **Short**: *h*
-- **Positional Argument**: Individual details of the positional arguments
-	- **Long**: *positional*
-	- **Short**: *p*
-- **Switch**: Individual details of the switches
-	- **Long**: *switch*
-	- **Short**: *s*
-
----
+> [!IMPORTANT]
+> See the [wiki](https://github.com/Drazape/fish-helpText/wiki) for usage
 
 # Installation
 ## User
