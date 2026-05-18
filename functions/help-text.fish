@@ -1,11 +1,9 @@
 function help-text --description='Generate help reference text'
-    set --function -- output_name (set_color --dim)(status current-function)(set_color normal)
-
     # parse arguments
     argparse 'h/help&' 'p/positional=+&' 'f/flag=+&' -- {$argv}
 
     if set --query --local -- _flag_help
-        help-text 'Generate help reference text' \
+        help-text 'Generate help reference text' https://github.com/Drazape/fish-helpText \
             --position='Description | The purpose of the command' \
             --flag={
                 'positional:p | Individual positional arguments',
@@ -14,14 +12,14 @@ function help-text --description='Generate help reference text'
         return
     end
     begin
-        set --local -- num_positional_args 1
         set -- arg_count (count {$argv})
-        if test {$arg_count} != {$num_positional_args}
-            echo {$output_name}(set_color --dim white):(set_color normal) expected (set_color --bold){$num_positional_args}(set_color normal) 'positional arguments; got' (set_color --italics){$arg_count}(set_color normal)
+        if test {$arg_count} -gt 2 || test {$arg_count} = 0
+            echo (set_color --dim)(status current-function)(set_color normal)(set_color --dim white):(set_color normal) expected (set_color --bold)1(set_color normal)(set_color white)/(set_color normal)(set_color --bold)2(set_color normal) 'positional arguments; got' (set_color --italics){$arg_count}(set_color normal)
             return 1
         end
     end
-    set --local -- command_description {$argv}
+    set --function -- command_description {$argv[1]}
+    set --local --query argv[2] && set --function -- documentation_url {$argv[2]}
     set --local --erase -- argv
 
     # common stuff
@@ -136,4 +134,7 @@ function help-text --description='Generate help reference text'
             echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
+
+    ## Wiki
+    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(set_color brblue)wiki(set_color normal)'\e]8;;\a'
 end

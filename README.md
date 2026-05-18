@@ -4,14 +4,14 @@ Generate formatted console help reference texts. Primarily used by other Fish pr
 # Demonstration
 ## help-text (self)
 ```fish
-help-text 'Generate help reference text' \
+help-text 'Generate help reference text' https://github.com/Drazape/fish-helpText/wiki \
 	--position='Description | The purpose of the command' \
 	--flag={
 		'positional:p | Individual positional arguments',
 		'flag:f | Individual switches'
 	}
 ```
-<img width="1894" height="560" alt="help-text (self)" src="https://github.com/user-attachments/assets/49680185-8e6f-42b9-a363-aac773890734" />
+<img width="1896" height="781" alt="help-text (self)" src="https://github.com/user-attachments/assets/75a2d35a-5027-4d8a-8531-7ea0fbb5dc52" />
 
 ## [fish-subAbbr](https://github.com/Drazape/fish-subAbbr "Simplify abbrevating subcommands")
 ```fish
