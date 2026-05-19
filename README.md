@@ -43,50 +43,11 @@ end
 # Installation
 ## User
 [**Fisher**](https://github.com/jorgebucaran/fisher): `fisher install Drazape/fish-helpText`
+
 ## System
-### Traditional Distributions
 ```fish
 curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-helpText/main/install.fish' | run0 fish -NP
 ```
-It will update each time it is run
-## NixOS
-A flake with convenient configuration options is planned.
-### Workaround
-For now, the installation can be worked-around (with automatic updates). This way is not supported and may stop working after an update.
-#### `flake.nix`:
-```nix
-{
-	inputs = {
-		fish-helpText = {
-				type="github"; owner="Drazape"; repo="fish-helpText";
-				flake = false;
-		};
-		…
-	};
-	outputs = inputs@{ self, nixpkgs, …, ... }: {
-		nixosConfigurations."yourHost" = nixpkgs.lib.nixosSystem {
-			specialArgs = { inherit inputs; };
-			…
-		};
-		…
-	};
-}
-```
-#### Module with the Fish configuration:
-```nix
-{ inputs, … }: {
-	…
-	programs.fish = {
-		shellInit = ( # Fish subcommand abbreviation (workaround)
-			builtins.concatStringsSep "\n" (
-				builtins.map builtins.readFile 
-						(builtins.map
-							(subDir: inputs.fish-helpText + ("/"+subDir) + "/help-text.fish")
-							[ "completions" "functions" ])
-		) + ''
-			…
-		'';
-		…
-	};
-};
-```
+
+> [!IMPORTANT]
+> [More ways to install](https://github.com/Drazape/fish-helpText/wiki/Installation#Package-Manager "Distribution Package Managers")
