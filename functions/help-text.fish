@@ -14,7 +14,7 @@ function help-text --description='Generate help reference text'
     begin
         set -- arg_count (count {$argv})
         if test {$arg_count} -gt 2 || test {$arg_count} = 0
-            echo (set_color --dim)(status current-function)(set_color normal)(set_color --dim white):(set_color normal) expected (set_color --bold)1(set_color normal)(set_color white)/(set_color normal)(set_color --bold)2(set_color normal) 'positional arguments; got' (set_color --italics){$arg_count}(set_color normal)
+            echo (set_color --dim)(status current-function)(set_color --reset --dim white):(set_color --reset) expected (set_color --bold)1(set_color --reset white)/(set_color --reset)(set_color --bold)2(set_color --reset) 'positional arguments; got' (set_color --italics){$arg_count}(set_color --reset)
             return 1
         end
     end
@@ -25,28 +25,28 @@ function help-text --description='Generate help reference text'
     # common stuff
     function output-format --description='Slightly dim punctuation'
         function slight-dim
-            echo (set_color white)"$argv"(set_color normal)
+            echo (set_color white)"$argv"(set_color --reset)
         end
         string trim -- {$argv} | string replace -- \; (slight-dim \;) | string replace -- , (slight-dim ,) | string replace -- . (slight-dim .)
     end
     function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized'
         set --function italicized {$argv[-1]}
         for name in {$argv[1..-2]}
-            set --function -- italicized (string replace -- {$name} (set_color --italics){$name}(set_color normal) {$italicized})
+            set --function -- italicized (string replace -- {$name} (set_color --italics){$name}(set_color --reset) {$italicized})
         end
         echo {$italicized}
     end
 
     function bullet --description='Create colored bullet points'
-        echo (set_color --dim yellow)"$argv"(set_color normal)
+        echo (set_color --dim yellow)"$argv"(set_color --reset)
     end
     function heading --description='Create headings for headers'
-        echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color normal)(set_color brblue):(set_color normal)
+        echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color --reset brblue):(set_color --reset)
     end
     function title --description='Create a title for subheads'
-        echo (set_color --underline{,-color=brcyan} --bold cyan)"$argv"(set_color normal)
+        echo (set_color --underline{,-color=brcyan} --bold cyan)"$argv"(set_color --reset)
     end
-    set --local -- sep \t(set_color --dim)│(set_color normal)
+    set --local -- sep \t(set_color --dim)│(set_color --reset)
 
     function largest-length --description='Find the string with the largest length'
         set --function -- lengths (string length -- {$argv})
@@ -59,7 +59,7 @@ function help-text --description='Generate help reference text'
 
     # Output
     ## Description
-    echo (set_color brmagenta){$command_description}(set_color normal)\n
+    echo (set_color brmagenta){$command_description}(set_color --reset)\n
 
     ## Arguments
     ### Positional
@@ -102,7 +102,7 @@ function help-text --description='Generate help reference text'
             else
                 echo -n (bullet (math {$i} - (count {$pos_names}) - 1))
             end
-            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$pos_names[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
+            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$pos_names[$i]})(set_color --reset) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
 
@@ -131,10 +131,10 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color normal) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
+            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
         end
     end
 
     ## Wiki
-    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(set_color brblue)wiki(set_color normal)'\e]8;;\a'
+    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(set_color brblue)wiki(set_color --reset)'\e]8;;\a'
 end

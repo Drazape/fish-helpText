@@ -16,7 +16,7 @@ help-text 'Generate help reference text' https://github.com/Drazape/fish-helpTex
 ## [fish-subAbbr](https://github.com/Drazape/fish-subAbbr "Simplify abbrevating subcommands")
 ```fish
 begin
-	set --local inherited \ (set_color white)'(inherited from '(set_color normal)(set_color --background=red)abbr(set_color normal)(set_color white)\)(set_color normal)
+	set --local inherited \ (set_color white)'(inherited from '(set_color --reset --background=red)abbr(set_color --reset white)\)(set_color --reset)
 	help-text 'Abbreviate subcommands' \
 		--positional={
 			'+Initial Args | All arguments that come before the Sub-Command', 
@@ -25,9 +25,9 @@ begin
 		} \
 		--switch={
 			'help:h | Show this reference manual',
-			'norun0:0 | Disable '(set_color --background=red)run0(set_color normal)' toleration for abbreviations',
+			'norun0:0 | Disable '(set_color --background=red)run0(set_color --reset)' toleration for abbreviations',
 			'regard-flags:s | Acknowledge flags in the Base Command',
-			'set-cursor:c | Position the cursor at '(set_color --background=brblack)%(set_color normal)' post-expansion'{$inherited},
+			'set-cursor:c | Position the cursor at '(set_color --background=brblack)%(set_color --reset)' post-expansion'{$inherited},
 			'regex:r | Match Sub-Command with Regex. Essential for multiple Base Commands'{$inherited}
 		}
 end
