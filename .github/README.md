@@ -1,5 +1,5 @@
-# Purpose
-Generate formatted console help reference texts. Primarily used by other Fish programs.
+# Description
+Fish library to generate formatted console help reference texts using an intuitive syntax
 
 # Demonstration
 ## help-text (self)
