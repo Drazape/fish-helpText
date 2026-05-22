@@ -1,6 +1,6 @@
 function help-text --description='Generate help reference text'
     # parse arguments
-    argparse 'h/help&' 'p/positional=+&' 'f/flag=+&' -- {$argv}
+    argparse 'h/help&' 'c/sub-command=+&' 'p/positional=+&' 'f/flag=+&' -- {$argv}
 
     if set --query --local -- _flag_help
         help-text 'Generate help reference text' https://github.com/Drazape/fish-helpText \
@@ -62,8 +62,24 @@ function help-text --description='Generate help reference text'
     echo (set_color brmagenta){$command_description}(set_color --reset)\n
 
     ## Arguments
+    ### Sub-Command
+    if set --query --local -- _flag_sub_command
+        heading Sub-Commands
+
+        # data
+        for subcommand in (output-format {$_flag_sub_command})
+            set --local -- details (string split --max=2 -- ' | ' {$subcommand})
+            set --append --function -- arg_names {$details[1]}
+            set --append --function -- descriptions {$details[2]}
+        end
+        set --local -- largest_name_len (largest-length {$arg_names})
+
+        for i in (seq 1 (count {$_flag_sub_command}))
+            echo \ (bullet •) (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
+        end
+    end
     ### Positional
-    if set --local --query -- _flag_positional
+    if set --query --local -- _flag_positional
         heading Positionals
 
         # data
@@ -81,9 +97,9 @@ function help-text --description='Generate help reference text'
                 set --function none_index (count {$descriptions})
                 set -- pos_details (string sub --start=2 -- {$pos_details})
             end
-            set --append --function -- pos_names {$pos_details}
+            set --append --function -- arg_names {$pos_details}
         end
-        set --local -- largest_name_len (largest-length {$pos_names})
+        set --local -- largest_name_len (largest-length {$arg_names})
 
         # print
         set --local -- subtract_none 0
@@ -100,14 +116,14 @@ function help-text --description='Generate help reference text'
             else if set --query --local -- varpos_left
                 echo -n \ (bullet (math {$i} - {$subtract_none}))
             else
-                echo -n (bullet (math {$i} - (count {$pos_names}) - 1))
+                echo -n (bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$pos_names[$i]})(set_color --reset) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
+            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ### Switches    
-    if set --local --query -- _flag_flag
+    if set --query --local -- _flag_flag
         heading Flags
 
         # data
@@ -131,7 +147,7 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (italicize-names {$pos_names} {$descriptions[$i]})
+            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
