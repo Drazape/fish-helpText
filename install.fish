@@ -22,8 +22,10 @@ begin
 end
 
 # Operate
-function install-component --description='Install a component of the program' --argument-names={file,installDir}
-    install -D --mode=644 -- {$file} {$installDir}/help-text.fish
+function install-components --description='Install a component of the program'
+    for component in {$argv[1]}/**.fish
+        install -D --mode=644 -- {$component} {$argv[2]}/(string split --fields=2 -- / {$component})/(string split --fields=3 --max=2 -- / {$component})
+    end
 end
 install-component functions /usr/local/share/fish/vendor_functions.d # Functions
 install-component completions /usr/local/share/fish/vendor_completions.d # Completions

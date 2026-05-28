@@ -23,39 +23,7 @@ function help-text --description='Generate help reference text'
     set --local --erase -- argv
 
     # common stuff
-    function output-format --description='Slightly dim punctuation'
-        function slight-dim
-            echo (set_color white)"$argv"(set_color --reset)
-        end
-        string trim -- {$argv} | string replace -- \; (slight-dim \;) | string replace -- , (slight-dim ,) | string replace -- . (slight-dim .)
-    end
-    function italicize-names --description='Return the last argument with all sub-strings that are the initial arguments capitalized'
-        set --function italicized {$argv[-1]}
-        for name in {$argv[1..-2]}
-            set --function -- italicized (string replace -- {$name} (set_color --italics){$name}(set_color --reset) {$italicized})
-        end
-        echo {$italicized}
-    end
-
-    function bullet --description='Create colored bullet points'
-        echo (set_color --dim yellow)"$argv"(set_color --reset)
-    end
-    function heading --description='Create headings for headers'
-        echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color --reset brblue):(set_color --reset)
-    end
-    function title --description='Create a title for subheads'
-        echo (set_color --underline{,-color=brcyan} --bold cyan)"$argv"(set_color --reset)
-    end
     set --local -- sep \t(set_color --dim)│(set_color --reset)
-
-    function largest-length --description='Find the string with the largest length'
-        set --function -- lengths (string length -- {$argv})
-        set --function -- big {$lengths[1]}
-        for length in {$lengths}
-            test {$big} -lt {$length} && set --function -- big {$length}
-        end
-        echo {$big}
-    end
 
     # Output
     ## Description
@@ -64,28 +32,28 @@ function help-text --description='Generate help reference text'
     ## Arguments
     ### Sub-Command
     if set --query --local -- _flag_sub_command
-        heading Sub-Commands
+        _help-text_heading Sub-Commands
 
         # data
-        for subcommand in (output-format {$_flag_sub_command})
+        for subcommand in (_help-text_output-format {$_flag_sub_command})
             set --local -- details (string split --max=2 -- ' | ' {$subcommand})
             set --append --function -- arg_names {$details[1]}
             set --append --function -- descriptions {$details[2]}
         end
-        set --local -- largest_name_len (largest-length {$arg_names})
+        set --local -- largest_name_len (_help-text_largest-length {$arg_names})
 
         for i in (seq 1 (count {$_flag_sub_command}))
-            echo \ (bullet •) (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_bullet •) (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
     ### Positional
     if set --query --local -- _flag_positional
-        heading Positionals
+        _help-text_heading Positionals
 
         # data
         set --function -- varpos_index 0
         set --function -- none_index -1
-        for positional_argument in (output-format {$_flag_positional})
+        for positional_argument in (_help-text_output-format {$_flag_positional})
             set --local -- details (string split --max=2 -- ' | ' {$positional_argument})
             set --append --function -- descriptions {$details[2]}
             set --local -- pos_details {$details[1]}
@@ -99,38 +67,38 @@ function help-text --description='Generate help reference text'
             end
             set --append --function -- arg_names {$pos_details}
         end
-        set --local -- largest_name_len (largest-length {$arg_names})
+        set --local -- largest_name_len (_help-text_largest-length {$arg_names})
 
         # print
         set --local -- subtract_none 0
         set --local -- varpos_left
         for i in (seq 1 (count {$_flag_positional}))
             if test {$none_index} -eq {$i}
-                echo -n \ (bullet -)
+                echo -n \ (_help-text_bullet -)
                 set -- subtract_none 1
             else if test {$varpos_index} -eq 0
-                echo -n \ (bullet (math {$i} - {$subtract_none}).)
+                echo -n \ (_help-text_bullet (math {$i} - {$subtract_none}).)
             else if test {$i} -eq {$varpos_index}
-                echo -n \ (bullet +)
+                echo -n \ (_help-text_bullet +)
                 set --local --erase varpos_left
             else if set --query --local -- varpos_left
-                echo -n \ (bullet (math {$i} - {$subtract_none}))
+                echo -n \ (_help-text_bullet (math {$i} - {$subtract_none}))
             else
-                echo -n (bullet (math {$i} - (count {$arg_names}) - 1))
+                echo -n (_help-text_bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ### Switches    
     if set --query --local -- _flag_flag
-        heading Flags
+        _help-text_heading Flags
 
         # data
         set --local -- short_flags
         set --local -- long_flags
         set --local -- descriptions
-        for switch in (output-format {$_flag_flag})
+        for switch in (_help-text_output-format {$_flag_flag})
             set --local -- details (string split --max=2 -- ' | ' {$switch})
             set --local -- flags (string split --max=2 -- : {$details[1]})
             set --append -- descriptions {$details[2]}
@@ -142,12 +110,12 @@ function help-text --description='Generate help reference text'
             end
             set --append -- long_flags {$flags[1]}
         end
-        set --local -- largest_longFlag_len (largest-length {$long_flags})
+        set --local -- largest_longFlag_len (_help-text_largest-length {$long_flags})
 
-        echo (string repeat 3 \ )(title (string pad --center --width={$largest_longFlag_len} long)) (title short)
+        echo (string repeat 3 \ )(_help-text_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo \ (bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
