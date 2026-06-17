@@ -1,5 +1,5 @@
 # Description
-Fish library to generate formatted console help reference texts using an intuitive syntax
+Fish library to generate formatted [ANSI](https://github.com/Drazape/SymP/blob/main/src/lib/arg/switch/indi/help-text.fish "formatting escape sequences for console output") help reference texts using an intuitive syntax
 
 # Demonstration
 ## help-text (self)
