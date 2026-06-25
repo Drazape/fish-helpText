@@ -49,9 +49,9 @@ The *header* and the *description*s are separated by ` | `.
 help-text --<flag>='<header> | <description>'
 ```
 
-- [Sub-Command](Switches/Sub-Command.md){data-preview}
-- [Positionals](Switches/Positional.md){data-preview}
-- [Flags](Switches/Flag.md){data-preview}
+- [Sub-Command](Switches/Arguments/Sub-Command.md){data-preview}
+- [Positionals](Switches/Arguments/Positional.md){data-preview}
+- [Flags](Switches/Arguments/Flag.md){data-preview}
 
 !!! info "Dimmed Puntuation"
     The punctuation (`;` `,` `.`) in the descriptions on each of the switches is automatically dimmed

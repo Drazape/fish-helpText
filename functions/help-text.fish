@@ -1,6 +1,6 @@
 function help-text --description='Generate help reference text'
     # parse arguments
-    argparse 'h/help&' 'c/sub-command=+&' 'p/positional=+&' 'f/flag=+&' -- {$argv}
+    argparse 'h/help&' 'c/sub-command=+&' 'p/positional=+&' 'f/flag=+&' 'l/link=+&' -- {$argv}
 
     if set --query --local -- _flag_help
         help-text 'Generate help reference text' https://Drazape.github.com/fish-helpText/ \
@@ -13,17 +13,32 @@ function help-text --description='Generate help reference text'
     end
     begin
         set -- arg_count (count {$argv})
-        if test {$arg_count} -gt 2 || test {$arg_count} = 0
+        if test {$arg_count} -ne 1
             echo (format text dim (status current-function) (format text color white ':')) expected (format text bold 1)(format text color white '/')(format text bold 2) 'positional arguments; got' (format text italics {$arg_count})
             return 1
         end
     end
     set --function -- command_description {$argv[1]}
-    set --local --query argv[2] && set --function -- documentation_url {$argv[2]}
     set --local --erase -- argv
 
-    # common stuff
+    if set --query --local -- _flag_link
+        set --local -- command {$_flag_link[1]}
+        if ! type --query -- {$command}
+            echo (format text dim (status current-function) (format text color white ':')) unknown (format text italics 'link') command: (format background black --bright (format text color red {$command}))
+            return 2
+        end
+    end
+
+    # common
     set --local -- sep \t(format text dim '│')
+    function hypertext --description='Link heads with URLs returned' --inherit-variable=_flag_link
+        set --local -- val {$argv[2]}
+        if set --query --local -- _flag_link && set --local -- link ($_flag_link {$argv})
+            format url {$link} {$val}
+            return
+        end
+        echo {$val}
+    end
 
     # Output
     ## Description
@@ -32,7 +47,8 @@ function help-text --description='Generate help reference text'
     ## Arguments
     ### Sub-Command
     if set --query --local -- _flag_sub_command
-        _help-text_heading Sub-Commands
+        set --local -- heading Sub-Commands
+        _help-text_heading (hypertext heading Sub-Commands)
 
         # data
         for subcommand in (_help-text_output-format {$_flag_sub_command})
@@ -43,12 +59,12 @@ function help-text --description='Generate help reference text'
         set --local -- largest_name_len (_help-text_largest-length {$arg_names})
 
         for i in (seq 1 (count {$_flag_sub_command}))
-            echo \ (_help-text_bullet •) (format text bold (format text color green (string pad --right --width={$largest_name_len} -- {$arg_names[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_bullet •) (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext sub-command {$arg_names[$i]})))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
     ### Positional
     if set --query --local -- _flag_positional
-        _help-text_heading Positionals
+        _help-text_heading (hypertext heading Positionals)
 
         # data
         set --function -- varpos_index 0
@@ -86,13 +102,13 @@ function help-text --description='Generate help reference text'
             else
                 echo -n (_help-text_bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- {$arg_names[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext positional {$arg_names[$i]})))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ### Switches    
     if set --query --local -- _flag_flag
-        _help-text_heading Flags
+        _help-text_heading (hypertext heading Flags)
 
         # data
         set --local -- short_flags
@@ -115,10 +131,16 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(_help-text_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo \ (_help-text_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            set --local -- long_flag {$long_flags[$i]}
+            set --local -- short_flag {$short_flags[$i]}
+            set --query --local -- _flag_link && set --local -- short_flag (format url ($_flag_link {$long_flag}) {$short_flag})
+            set --local -- long_flag (hypertext flag {$long_flag})
+            echo \ (_help-text_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flag})\ (string pad --center --width=5 {$short_flag}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ## Wiki
-    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(format text color blue --bright 'wiki')'\e]8;;\a'
+    set --query --local -- _flag_link && set --local -- link ($_flag_link) &&
+        format url {$link} (format text color blue --bright 'documentation')
+    return 0
 end
