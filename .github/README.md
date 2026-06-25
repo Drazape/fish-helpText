@@ -4,7 +4,7 @@ Fish library to generate formatted [ANSI](https://github.com/Drazape/SymP/blob/m
 # Demonstration
 ## help-text (self)
 ```fish
-help-text 'Generate help reference text' https://github.com/Drazape/fish-helpText/wiki \
+help-text 'Generate help reference text' https://Drazape.github.io/fish-helpText/ \
 	--position='Description | The purpose of the command' \
 	--flag={
 		'positional:p | Individual positional arguments',
@@ -38,7 +38,7 @@ end
 > [Discover programs that use this library](https://github.com/topics/fish-helptext)
 
 > [!IMPORTANT]
-> See the [wiki](https://github.com/Drazape/fish-helpText/wiki) for usage
+> See the [documentation](https://Drazape.github.io/fish-helpText "Zensical documentation @ GitHub Pages") for usage
 
 # Installation
 ## User
@@ -50,4 +50,4 @@ curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-helpText/main/install
 ```
 
 > [!IMPORTANT]
-> [More ways to install](https://github.com/Drazape/fish-helpText/wiki/Installation#Package-Manager "Distribution Package Managers")
+> [More ways to install](http://Drazape.github.io/fish-helpText/Installation/ "Distribution Package Managers")
