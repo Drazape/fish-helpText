@@ -14,7 +14,7 @@ function help-text --description='Generate help reference text'
     begin
         set -- arg_count (count {$argv})
         if test {$arg_count} -gt 2 || test {$arg_count} = 0
-            echo (set_color --dim)(status current-function)(set_color --reset --dim white):(set_color --reset) expected (set_color --bold)1(set_color --reset white)/(set_color --reset)(set_color --bold)2(set_color --reset) 'positional arguments; got' (set_color --italics){$arg_count}(set_color --reset)
+            echo (format text dim (status current-function) (format text color white ':')) expected (format text bold 1)(format text color white '/')(format text bold 2) 'positional arguments; got' (format text italics {$arg_count})
             return 1
         end
     end
@@ -23,11 +23,11 @@ function help-text --description='Generate help reference text'
     set --local --erase -- argv
 
     # common stuff
-    set --local -- sep \t(set_color --dim)│(set_color --reset)
+    set --local -- sep \t(format text dim '│')
 
     # Output
     ## Description
-    echo (set_color brmagenta){$command_description}(set_color --reset)\n
+    echo (format text color magenta --bright {$command_description})\n
 
     ## Arguments
     ### Sub-Command
@@ -43,7 +43,7 @@ function help-text --description='Generate help reference text'
         set --local -- largest_name_len (_help-text_largest-length {$arg_names})
 
         for i in (seq 1 (count {$_flag_sub_command}))
-            echo \ (_help-text_bullet •) (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_bullet •) (format text bold (format text color green (string pad --right --width={$largest_name_len} -- {$arg_names[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
     ### Positional
@@ -86,7 +86,7 @@ function help-text --description='Generate help reference text'
             else
                 echo -n (_help-text_bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (set_color --bold green)(string pad --right --width={$largest_name_len} -- {$arg_names[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- {$arg_names[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
@@ -104,7 +104,7 @@ function help-text --description='Generate help reference text'
             set --append -- descriptions {$details[2]}
             set --local -- short_flag {$flags[2]}
             if test -z {$short_flag}
-                set --append -- short_flags (set_color brred)\~
+                set --append -- short_flags (format text color red --bright \~)
             else
                 set --append -- short_flags {$short_flag}
             end
@@ -115,10 +115,10 @@ function help-text --description='Generate help reference text'
         echo (string repeat 3 \ )(_help-text_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
-            echo \ (_help-text_bullet •) (set_color --italics green)(string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]})(set_color --reset) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flags[$i]})\ (string pad --center --width=5 {$short_flags[$i]}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ## Wiki
-    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(set_color brblue)wiki(set_color --reset)'\e]8;;\a'
+    set --query --function documentation_url && echo -e \n'\e]8;;'{$documentation_url}'\a'(format text color blue --bright 'wiki')'\e]8;;\a'
 end

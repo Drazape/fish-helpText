@@ -3,6 +3,8 @@ function _fish-helpText_uninstall --on-event=fish-helpText_uninstall --descripti
 end
 
 function _fish-helpText_install --on-event=fish-helpText_install --description='Correct sub-function file-names'
+    fisher install Drazape/fish-format
+
     cd ~/.config/fish/functions/
     for file in help-text/**.fish
         mv {$file} _(string replace --all -- / _ {$file})
