@@ -1,6 +1,7 @@
 # [v0.2.2] - feat: Hypertext linkers
 <!-- New changes here  -->
 A new switch—[Hyperlink](https://drazape.github.io/fish-helpText/Arguments/Switches/Hyperlink/ "New Documentation") accepts a [command](https://drazape.github.io/fish-helpText/Linkers/ "New Documentation") that returns URLs for different sorts of headers.
+For this, a new repository is created. Though empty, contributions are welcome.
 
 
 # [v0.2.1] - Sub-Commands support

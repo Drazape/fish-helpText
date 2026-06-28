@@ -48,28 +48,28 @@ function help-text --description='Generate help reference text'
     ### Sub-Command
     if set --query --local -- _flag_sub_command
         set --local -- heading Sub-Commands
-        _help-text_heading (hypertext heading Sub-Commands)
+        _help-text_internal_heading (hypertext heading Sub-Commands)
 
         # data
-        for subcommand in (_help-text_output-format {$_flag_sub_command})
+        for subcommand in (_help-text_internal_output-format {$_flag_sub_command})
             set --local -- details (string split --max=2 -- ' | ' {$subcommand})
             set --append --function -- arg_names {$details[1]}
             set --append --function -- descriptions {$details[2]}
         end
-        set --local -- largest_name_len (_help-text_largest-length {$arg_names})
+        set --local -- largest_name_len (_help-text_internal_largest-length {$arg_names})
 
         for i in (seq 1 (count {$_flag_sub_command}))
-            echo \ (_help-text_bullet •) (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext sub-command {$arg_names[$i]})))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_internal_bullet •) (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext sub-command {$arg_names[$i]})))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
     ### Positional
     if set --query --local -- _flag_positional
-        _help-text_heading (hypertext heading Positionals)
+        _help-text_internal_heading (hypertext heading Positionals)
 
         # data
         set --function -- varpos_index 0
         set --function -- none_index -1
-        for positional_argument in (_help-text_output-format {$_flag_positional})
+        for positional_argument in (_help-text_internal_output-format {$_flag_positional})
             set --local -- details (string split --max=2 -- ' | ' {$positional_argument})
             set --append --function -- descriptions {$details[2]}
             set --local -- pos_details {$details[1]}
@@ -83,38 +83,38 @@ function help-text --description='Generate help reference text'
             end
             set --append --function -- arg_names {$pos_details}
         end
-        set --local -- largest_name_len (_help-text_largest-length {$arg_names})
+        set --local -- largest_name_len (_help-text_internal_largest-length {$arg_names})
 
         # print
         set --local -- subtract_none 0
         set --local -- varpos_left
         for i in (seq 1 (count {$_flag_positional}))
             if test {$none_index} -eq {$i}
-                echo -n \ (_help-text_bullet -)
+                echo -n \ (_help-text_internal_bullet -)
                 set -- subtract_none 1
             else if test {$varpos_index} -eq 0
-                echo -n \ (_help-text_bullet (math {$i} - {$subtract_none}).)
+                echo -n \ (_help-text_internal_bullet (math {$i} - {$subtract_none}).)
             else if test {$i} -eq {$varpos_index}
-                echo -n \ (_help-text_bullet +)
+                echo -n \ (_help-text_internal_bullet +)
                 set --local --erase varpos_left
             else if set --query --local -- varpos_left
-                echo -n \ (_help-text_bullet (math {$i} - {$subtract_none}))
+                echo -n \ (_help-text_internal_bullet (math {$i} - {$subtract_none}))
             else
-                echo -n (_help-text_bullet (math {$i} - (count {$arg_names}) - 1))
+                echo -n (_help-text_internal_bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext positional {$arg_names[$i]})))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext positional {$arg_names[$i]})))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
     ### Switches    
     if set --query --local -- _flag_flag
-        _help-text_heading (hypertext heading Flags)
+        _help-text_internal_heading (hypertext heading Flags)
 
         # data
         set --local -- short_flags
         set --local -- long_flags
         set --local -- descriptions
-        for switch in (_help-text_output-format {$_flag_flag})
+        for switch in (_help-text_internal_output-format {$_flag_flag})
             set --local -- details (string split --max=2 -- ' | ' {$switch})
             set --local -- flags (string split --max=2 -- : {$details[1]})
             set --append -- descriptions {$details[2]}
@@ -126,16 +126,16 @@ function help-text --description='Generate help reference text'
             end
             set --append -- long_flags {$flags[1]}
         end
-        set --local -- largest_longFlag_len (_help-text_largest-length {$long_flags})
+        set --local -- largest_longFlag_len (_help-text_internal_largest-length {$long_flags})
 
-        echo (string repeat 3 \ )(_help-text_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_title short)
+        echo (string repeat 3 \ )(_help-text_internal_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_internal_title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
             set --local -- long_flag {$long_flags[$i]}
             set --local -- short_flag {$short_flags[$i]}
             set --query --local -- _flag_link && set --local -- short_flag (format url ($_flag_link {$long_flag}) {$short_flag})
             set --local -- long_flag (hypertext flag {$long_flag})
-            echo \ (_help-text_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flag})\ (string pad --center --width=5 {$short_flag}))) {$sep} (_help-text_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_internal_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flag})\ (string pad --center --width=5 {$short_flag}))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
