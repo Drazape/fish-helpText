@@ -133,8 +133,10 @@ function help-text --description='Generate help reference text'
         for i in (seq 1 (count {$_flag_flag}))
             set --local -- long_flag {$long_flags[$i]}
             set --local -- short_flag {$short_flags[$i]}
-            set --query --local -- _flag_link && set --local -- short_flag (format url ($_flag_link {$long_flag}) {$short_flag})
-            set --local -- long_flag (hypertext flag {$long_flag})
+            if set --query --local -- _flag_link && set --local -- url ($_flag_link flag {$long_flag})
+                set -- short_flag (format url {$url} {$short_flag})
+                set -- long_flag (format url {$url} {$long_flag})
+            end
             echo \ (_help-text_internal_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flag})\ (string pad --center --width=5 {$short_flag}))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
