@@ -3,11 +3,12 @@ function help-text --description='Generate help reference text'
     argparse 'h/help&' 'c/sub-command=+&' 'p/positional=+&' 'f/flag=+&' 'l/link=+&' -- {$argv}
 
     if set --query --local -- _flag_help
-        help-text 'Generate help reference text' https://Drazape.github.com/fish-helpText/ \
+        help-text 'Generate help reference text' --link=_help-text_internal_linker \
             --position='Description | The purpose of the command' \
             --flag={
+                'sub-command:c | Individual Sub-Commands',
                 'positional:p | Individual positional arguments',
-                'switch:s | Individual switches'
+                'flag:f | Individual switches'
             }
         return
     end
