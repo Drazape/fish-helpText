@@ -6,7 +6,7 @@ if ! fish_is_root_user
 end
 
 # Install dependency: fish-format
-curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-format/main/install.fish' | run0 fish -NP
+curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-format/main/install.fish' | fish --no-config --private
 
 # Setup Cleanup
 function cleanup_temporary_repository --description='Nuke temporary repository on exit' --on-event=fish_exit
