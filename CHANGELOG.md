@@ -1,5 +1,9 @@
-# [v0.2.2] - feat: Hypertext linkers
+# [v0.2.2] - hypertext, flake
 <!-- New changes here  -->
+## Packaging
+- **Nix Flake Package**: The program was packaged as a Nix flake. This means that you no longer have to workaround installation by concatenating all the functions into the shell initialization configuration, and the functions would load on-demand.
+- **Fix Curl Install cloning**: Fixed a bug causing the sub-functions to not be intalled correctly
+## Feat: Hypertext linkers
 A new switch—[Hyperlink](https://drazape.github.io/fish-helpText/Arguments/Switches/Hyperlink/ "New Documentation") accepts a [command](https://drazape.github.io/fish-helpText/Linkers/ "New Documentation") that returns URLs for different sorts of headers.
 One for help-text itself is already made. To make the process easier, a new repository is created that would contain hyper-text linker frameworks. Though empty, contributions are welcome.
 
