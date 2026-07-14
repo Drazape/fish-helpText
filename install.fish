@@ -17,10 +17,9 @@ if set --query --local -- remote
     end
 
     begin
-        set --local proj_name fish-helpText
-        # Clone repository to temporary directory
-        set --global -- repository_dir (mktemp -- {$proj_name}-XXXXXXXXX)
-        git $clone_repo --filter=blob:none https://github.com/Drazape/ {$proj_name}.git "$repository_dir" || return 2
+        set --local -- proj_name fish-helpText
+        set --local -- repository_dir {$proj_name}-(random)
+        git --filter=blob:none https://github.com/Drazape/{$proj_name}.git "$repository_dir" || return 2
         cd {$repository_dir}
     end
 end
