@@ -35,14 +35,14 @@ end
 <img width="1377" height="342" alt="sub-abbr" src="https://github.com/user-attachments/assets/b677e4ef-660b-40b8-a35e-81fd65d35d46" />
 
 > [!TIP]
-> [Discover programs that use this library](https://github.com/topics/fish-helptext)
+> [Discover programs that use this library](https://github.com/topics/fish-helptext "GitHub topic")
 
 > [!IMPORTANT]
 > See the [documentation](https://Drazape.github.io/fish-helpText "Zensical documentation @ GitHub Pages") for usage
 
 # Installation
 ## User
-[**Fisher**](https://github.com/jorgebucaran/fisher): `fisher install Drazape/fish-helpText`
+[**Fisher**](https://github.com/jorgebucaran/fisher "GitHub repository"): `fisher install Drazape/fish-helpText`
 
 ## System
 ```fish
