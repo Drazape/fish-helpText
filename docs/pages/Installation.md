@@ -61,11 +61,11 @@ As of now, no distribution package manager is supported.
 }
 ```
 ```nix {hl_lines="5" title="Module with the Fish configuration"}
-{ inputs, … }: {
+{ inputs, pkgs, …, ... }: {
 	…
 	environment.systemPackages = [
 		…
-		inputs.fish-helpText.packages."${stdenv.hostPlatform.system}".default
+		inputs.fish-helpText.packages."${pkgs.stdenv.hostPlatform.system}".default
 		…
 	]
 	…
