@@ -25,7 +25,7 @@ if set --query --local -- remote
 end
 
 # Populate
-for dir in functions comletions
+for dir in functions completions
     for source in "$root_dir"{$dir}/**.fish
         set --local -- output_path {$source} # Same output path in case of no root directory
         set --query --local -- root_dir && set --local -- output_path (string split --fields=2 --max=1 -- "$root_dir" {$source}) # Remove root directory from the output path
