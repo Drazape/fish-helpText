@@ -12,7 +12,7 @@ Dynamically hyperlink help-text headers to documentation
 | `link` |  `l`  |    None   |
 
 # Syntax
-The first argument is the Base Command, while the others are positional arguments passed to the specified base command. It is essentially the same format as used on the shell, but instead seperated by a `,`.  
+The first argument is the Base Command, while the others are positional arguments passed to the specified base command. It is essentially the same format as used on the shell, but instead separated by a `,`.  
 ```fish {title="Format" .no-select .no-copy}
 help-text --link={<base-command>,<arg1>,<arg2>,<…>}
 ```
