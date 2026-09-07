@@ -24,7 +24,7 @@ When all the arguments appear a fixed number of time, then the *header* is simpl
 If there are variable arguments, prepend the variable argument's position [^single-vararg] with a `+`. This will affect the index of all the positionals that follows. [^index]
 
 !!! tip "Experiment the `+` prefix"
-    Try fooling around by prefixing `+` on different positions to know how it would affect the index counts
+    Try prefixing `+` on different positions to know how it would affect the index counts
 
 ### Optional
 If arguments are optional, then you would use the earlier two types for the most part, but include a new row telling the user what happens when no argument is specified, with the header prefixed with a `-`.
@@ -32,11 +32,11 @@ If arguments are optional, then you would use the earlier two types for the most
 !!! warning "Must support argument-less execution"
     Don't use this if the command throws an error when supplied no positional arguments
 
-The header can be anything you like, e.g.:
+The header can be anything you like—for example:
 - *None*
 - *Null*
 - *Empty*
-- *Current* (in case of programs that take a path as argument{,s}; not a standard, just an example)
+- *Current* (in case of programs that take a path as argument{,s}; not a standard, but an example)
 
 !!! note "Simultaneous Usage"
     The 3 positional arguments types above can by simultaneously used (Until multiple types aren't used on a single positional)
@@ -48,6 +48,6 @@ Don't pass the *Positional* switch if positional arguments aren't accepted.
 Each header matched in the *description*s is automatically italicized
 
 
-[^single-vararg]: There can only be one variable positional argument since there is no way of determining if an argument is a fixed argument or a variable argument, and if a variable argument, then which one
-[^index]: The index of the variable argument will simply be a `+`, while the followed positionals will be negatively indexed, and the rest of the positionals (before the variable positionals) will be positively indexed (like they do without any variable argument)
-[^arg-dir]: The direction of the arguments can be both from the left and the right. This determines if the index value displayed to the user would be positive (left) or negative. Negative indices are the only choice for arguments followed by variable arguments
+[^single-vararg]: There can only be one variable positional argument because there is no way of determining if an argument is a fixed argument or a variable argument, and if a variable argument, then which one.
+[^index]: The “index” of the variable argument will simply be a `+`, while the followed positionals will be negatively indexed, and the rest of the positionals (before the variable positionals) will be positively indexed (like they do without any variable argument).
+[^arg-dir]: The direction of the arguments can be both from the left and the right. This determines if the index value displayed to the user would be positive (left) or negative. Negative indexes are the only choice for arguments followed by variable arguments.

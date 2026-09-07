@@ -7,8 +7,8 @@ description: A combination of 2 sorts of syntax is used for the parsing.
 # Arguments
 A combination of 2 sorts of syntax is used for the parsing.
 
-## Fish Native
-Native data-structures parsed by Fish, for *helpText*.
+## Fish Built-in
+Built-in data-structures parsed by Fish, for *helpText*.
 
 ### Features
 - Familiar
@@ -21,7 +21,7 @@ Currently, there is only one positional argument, so the order of the arguments 
 Simply pass the string after the Base Command.
 #### Flags
 ##### Value-less
-Flags that don't accept or require a value can simply be passed just like *Positional* arguments, with the limitation that each flag must be passed before `--` is.
+Flags that don't accept or require a value can simply be passed like *Positional* arguments — with the limitation that each flag must be passed before `--` is.
 ##### Value
 ###### Single
 If the flag accepts a single value, use the flag once. Multiple uses overwrite the previous value.
@@ -41,7 +41,7 @@ help-text --<long-flag>={
 Those *values* (`…`) contain the [Self-parsed Syntax](#self-parsed).
 
 ## Self-parsed
-Syntax for data-structures unavailable natively in Fish.
+Syntax for data-structures not built-in in Fish.
 ### Usage
 #### Common
 The *header* and the *description*s are separated by ` | `.
@@ -57,5 +57,5 @@ help-text --<flag>='<header> | <description>'
     The punctuation (`;` `,` `.`) in the descriptions on each of the switches is automatically dimmed
 
 ### Features
-- **Limited**: The syntax parsed by the program itself only includes division of certain sections in the text, since most of the parsing is handled by native Fish data-structures.  
-- **Inescapable**: The only escaping ever possible in the self-parsed syntax would be ` | ` splitting and `+` prefixes (in case of fixed number of arguments) in headers; these are very unlikely to literally appear in those, and hence, escaping is not an option.
+- **Limited**: The syntax parsed by the program itself only includes division of certain sections in the text; this is because most of the parsing is handled by built-in Fish data-structures.  
+- **Inescapable**: The only escaping possible in the self-parsed syntax is ` | ` splitting and `+` prefixes (in case of fixed number of arguments) in headers; these are very unlikely to literally appear in those, and hence, escaping is not an option.

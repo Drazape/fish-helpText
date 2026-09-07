@@ -19,8 +19,8 @@ help-text --link={<base-command>,<arg1>,<arg2>,<…>}
 
 # Command
 ## Permanent Arguments
-- **Initial**: The command specified is always executed with the explicitly specified arguments as the initial ones.
-- **Immutable**: Once specified, these explicit arguments do not change, and are always provided each time it is ran, for any purpose.
+- **Initial**: The command specified is always ran with the explicitly specified arguments as the initial ones.
+- **Immutable**: After specified, these explicit arguments do not change, and are always provided each time it is ran, for any purpose.
 ??? info "Internal Implementation"
     The arguments and the base command are treated as a single entity, and aren't explicitly handled.  
     All the values passed—the base command, and it's arguments—are called as is on the shell; essentially, the passed values are treated as if it were a single command.

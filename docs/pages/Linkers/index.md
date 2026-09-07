@@ -12,7 +12,7 @@ They are simply passed with the details of the headers, and return a URL that is
 ### Comparison
 |  ~  | [Official Repository](#official-repository){data-preview} | [3rd-party](#3rd-party){data-preview} |
 | :-: | :-----------------------------------------: | ---------------------- |
-| **Distribution** | Via base package | Yourself. Users will have to install the package before using it. |
+| **Distribution** | From base package | Yourself. Users will have to install the package before using it. |
 | **Configuration** | ❌ | Optional |
 | **Updates** | Delayed for review | Direct |
 

@@ -15,7 +15,7 @@ Flags for switches. Optional arguments that modify the behavior.
 ### Basic
 The headers convey the *flag*s (*long* and *short*): `<long>:<short>`
 ### Omitting *short*
-The *short* flag can be omitted if it isn't supported. i.e., the `<short>` part would not be part of the string. (the `:` stays): `<long>:`
+The *short* flag can be omitted if it isn't supported. that is, the `<short>` part would not be part of the string. (the `:` stays): `<long>:`
 
 ## Internal Formatting
 ### Short Omission

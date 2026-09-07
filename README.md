@@ -13,11 +13,11 @@ help-text 'Generate help reference text' https://Drazape.github.io/fish-helpText
 ```
 <img width="1896" height="781" alt="help-text (self)" src="https://github.com/user-attachments/assets/75a2d35a-5027-4d8a-8531-7ea0fbb5dc52" />
 
-## [fish-subAbbr](https://github.com/Drazape/fish-subAbbr "Simplify abbrevating subcommands")
+## [fish-subAbbr](https://github.com/Drazape/fish-subAbbr "Simplify abbrevating sub-commands")
 ```fish
 begin
 	set --local inherited \ (set_color white)'(inherited from '(set_color --reset --background=red)abbr(set_color --reset white)\)(set_color --reset)
-	help-text 'Abbreviate subcommands' \
+	help-text 'Abbreviate sub-commands' \
 		--positional={
 			'+Initial Args | All arguments that come before the Sub-Command', 
 			'Sub-Command | Comes after the Base Command; replaced by the Expansion',
