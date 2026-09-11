@@ -5,7 +5,7 @@ desription: Installation procedure and methods
 ---
 
 # Installation
-## Dependencies
+## Dependency
 - [format](https://github.com/Drazape/fish-format "GitHub repository"){data-preview}: Intuitively generate ANSI sequences
 
 ## Procedure
@@ -36,13 +36,9 @@ This locally installs the program and updates each time it is run
 curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-helpText/main/install.fish' | run0 fish -NP
 ```
 ##### Package Manager
-As of now, no distribution package manager is supported.
-
 ###### NixOS
 !!! warning "Manual Dependency"
-    You'll need to manually install the [dependencies](#dependencies){data-preview}.
-		!!! info "Future Fish dependencies automation"
-				For the package, a special wrapper for Fish dependencies (planned) needs to be made.
+    You'll need to manually install the cyclic [dependency](#dependency){data-preview}.
 
 ```nix {hl_lines="4" title="flake.nix"}
 {
