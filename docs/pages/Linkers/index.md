@@ -4,7 +4,7 @@ icon: lucide/link-2
 description: Distribution ways
 ---
 # Linkers
-Linkers are commands that [link](../Arguments/Switches/Hyperlink.md){data-preview} the headers with URLs for users to follow to the external documentation.
+Linkers are commands which [link](../Arguments/Switches/Hyperlink.md){data-preview} the headers with URLs for users to follow to the external documentation.
 
 They are simply passed with the details of the headers, and return a URL that is then hyperlinked to the respective header.
 
@@ -19,7 +19,7 @@ They are simply passed with the details of the headers, and return a URL that is
 
 ### Methods
 #### Official Repository
-Each linker is a single function in the repository that provides URLs for the specific documentation website/framework it corresponds to.  
+Each linker is a single function in the repository which provides URLs for the specific documentation website/framework it corresponds to.  
 
 !!! tip "Gaze at Pre-existing linkers"
     Have a look at other packages defined in the [repository](https://github.com/Drazape/fish-helpText/tree/main/functions/help-text/hyper/ "Official Hyper-linker Repository"){data-preview} before pushing your own here.
