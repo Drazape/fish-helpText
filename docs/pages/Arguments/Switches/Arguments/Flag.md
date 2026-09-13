@@ -1,7 +1,7 @@
 ---
 comments: true
 icon: lucide/flag
-description: Flags for switches: optional arguments which modify the behavior.
+description: Flags for switches—optional arguments which modify the behavior.
 ---
 
 # Flag

@@ -44,7 +44,7 @@ The header you gave to the command (the description is not passed.)
 !!! note "Flag Header"
     In case the header is a flag, then only the long flag is passed (short flag is omitted)
 !!! info "Heading titles"
-    In case the of a heading title, the title can be one of the argument flags accepted:
+    In case the of a heading title, the title can be one of the accepted argument flags:
 
     - Sub-Commands
     - Positionals
