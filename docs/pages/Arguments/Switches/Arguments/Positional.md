@@ -15,7 +15,7 @@ Arguments recognised by their position
     The program doesn't stop you from using it with [Sub-Command](./Sub-Command.md "Different operations from a single command"){data-preview}, but there isn't really a use-case to do so
 
 ## Types
-There are 4 Types of positional arguments, each having a different syntax used on the header:
+There are 4 Types of positional arguments, each having a different syntax used on the header:
 ### Static
 When all the arguments appear a fixed number of time, then the *header* is simply a string, without any special syntax (prefix).
 
@@ -39,7 +39,7 @@ The header can be anything you like—for example:
 - *Current* (in case of programs that take a path as argument{,s}; not a standard, but an example)
 
 !!! note "Simultaneous Usage"
-    The 3 positional arguments types above can by simultaneously used (Until multiple types aren't used on a single positional)
+    The 3 positional arguments types above can by simultaneously used (Until multiple types aren't used on a single positional)
 
 ### None
 Don't pass the *Positional* switch if positional arguments aren't accepted.

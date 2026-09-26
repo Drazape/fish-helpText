@@ -1,11 +1,11 @@
 ---
 comments: true
 icon: lucide/parentheses
-description: A combination of 2 sorts of syntax is used for the parsing.
+description: A combination of 2 sorts of syntax is used for the parsing.
 ---
 
 # Arguments
-A combination of 2 sorts of syntax is used for the parsing.
+A combination of 2 sorts of syntax is used for the parsing.
 
 ## Fish Built-in
 Built-in data-structures parsed by Fish, for *helpText*.

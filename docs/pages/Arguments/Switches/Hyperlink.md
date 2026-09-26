@@ -39,7 +39,7 @@ Immutable
 ## Headers data
 The tokens the command is dynamically passed with.
 ### Final
-These are the last 2 arguments, conveying information about the current header.
+These are the last 2 arguments, conveying information about the current header.
 *[current header]: The header in batch that the information is passed of
 
 #### `-2` Type
@@ -69,7 +69,7 @@ The last argument to the command which is the header you gave to the command (th
 !!! tip "Additional Data"
     Other than the type and name, other custom data can be passed as well.
 
-    For example, you have 2 sub-commands that both accept a switch with the same name, and both of them have different pages for the documentation.
+    For example, you have 2 sub-commands that both accept a switch with the same name, and both of them have different pages for the documentation.
     In this case, you can export a custom variable that you call `help-text` with that—one that your linker recognises.
     ```fish {title="Format"}
     my_subcommand=<name> help-text --link=my-linker

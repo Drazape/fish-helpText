@@ -38,6 +38,6 @@ Built-in Fish data structures
 ## Discoverability
 Make your program visible by allowing users to discover it with the [topic](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics#adding-topics-to-your-repository){data-preview}: [fish-helpText](https://github.com/topics/fish-helpText){data-preview}.
 
-It might be used as a [demonstration in the Readme](https://github.com/Drazape/fish-subAbbr#uses){data-preview} if at least one of the following 2 conditions are met:
+It might be used as a [demonstration in the Readme](https://github.com/Drazape/fish-subAbbr#uses){data-preview} if at least one of the following 2 conditions are met:
 - It showcases a feature / usage that is not already demonstrated
 - It showcases a feature better / stands-out more than an existing demonstration
