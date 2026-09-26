@@ -34,6 +34,7 @@ The following describes the input and output of the command
 !!! tip "Use"
     These are mainly used for abstraction. There could be a multi-purpose command that works for more than one use cases when used with different permanent arguments
 ## Headers data
+The tokens the command is dynamically passed with.
 ### Final
 These are the last 2 arguments, conveying information about the current header.
 *[current header]: The header in batch that the information is passed of

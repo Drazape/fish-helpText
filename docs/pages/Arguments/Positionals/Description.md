@@ -13,6 +13,7 @@ A brief description of the command (not the project)
 | `1` (first from the left) | Required | Plain String (none) |
 
 ## Internal Formatting
+Following sections briefly describe the internal formatting of the first line of the help reference text.
 ### Color
 The text is colored to be Magenta
 ### Position

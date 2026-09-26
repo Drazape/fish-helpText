@@ -8,6 +8,7 @@ The `develop` bookmark is used for the following:
 - Pushing revisions to, upstream
 
 # Documentation
+Following is guidance on contributing to the documentation
 ## Generation
 The documentation site is generated via [Zensical](https://zensical.org/ "Official site: a modern static site generator designed to simplify building and maintaining project documentation")
 ## Style

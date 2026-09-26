@@ -13,6 +13,7 @@ Link to the documentation for the command
 | `2` (second from the left) | Optional | Uniform Resource Locator (URL) |
 
 ## Internal Formatting
+Following is a description of the visible formatting of the Documentation footer
 ### Hypertext
 `wiki` is hypertext with the link to the documentation. It is colored to be *Bright Blue*.
 ### Position

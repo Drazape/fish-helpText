@@ -20,9 +20,11 @@ Currently, there is only one positional argument, so the order of the arguments 
 #### Positional
 Simply pass the string after the Base Command.
 #### Flags
+Optional arguments which modify the behavior of the command.
 ##### Value-less
 Flags that don't accept or require a value can simply be passed like *Positional* arguments — with the limitation that each flag must be passed before `--` is.
 ##### Value
+One or more strings requseted by the flag
 ###### Single
 If the flag accepts a single value, use the flag once. Multiple uses overwrite the previous value.
 ###### Multiple
@@ -43,6 +45,7 @@ Those *values* (`…`) contain the [Self-parsed Syntax](#self-parsed).
 ## Self-parsed
 Syntax for data-structures not built-in in Fish.
 ### Usage
+Here's how you can use the self-parsed syntax to pass the *header* and *description*s for each of the switches
 #### Common
 The *header* and the *description*s are separated by ` | `.
 ```fish {title="Format" .no-copy .no-select}

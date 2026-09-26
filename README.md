@@ -2,6 +2,7 @@
 Fish library to generate formatted [ANSI](https://github.com/Drazape/SymP/blob/main/src/lib/arg/switch/indi/help-text.fish "formatting escape sequences for console output") help reference texts using an intuitive syntax
 
 # Demonstration
+Following are some **outdated** demonstrations of the help-text library's output, along with the Fish code used to generate them.
 ## help-text (self)
 ```fish
 help-text 'Generate help reference text' https://Drazape.github.io/fish-helpText/ \
@@ -41,6 +42,7 @@ end
 > See the [documentation](https://Drazape.github.io/fish-helpText "Zensical documentation @ GitHub Pages") for usage
 
 # Installation
+Following are common universal installation methods for each scope:
 ## User
 [**Fisher**](https://github.com/jorgebucaran/fisher "GitHub repository"): `fisher install Drazape/fish-helpText`
 

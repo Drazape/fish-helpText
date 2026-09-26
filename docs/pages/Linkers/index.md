@@ -8,7 +8,8 @@ Linkers are commands which [link](../Arguments/Switches/Hyperlink.md){data-previ
 
 They are simply passed with the details of the headers, and return a URL that is then hyperlinked to the respective header.
 
-## Distribution Methods
+## Distribution
+Following is information on the distribution of the linkers
 ### Comparison
 |  ~  | [Official Repository](#official-repository){data-preview} | [3rd-party](#3rd-party){data-preview} |
 | :-: | :-----------------------------------------: | ---------------------- |
@@ -18,6 +19,7 @@ They are simply passed with the details of the headers, and return a URL that is
 
 
 ### Methods
+Different methods of distribution available to packagers
 #### Official Repository
 Each linker is a single function in the repository which provides URLs for the specific documentation website/framework it corresponds to.  
 
