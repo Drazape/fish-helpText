@@ -60,5 +60,8 @@ help-text --<flag>='<header> | <description>'
     The punctuation (`;` `,` `.`) in the descriptions on each of the switches is automatically dimmed
 
 ### Features
-- **Limited**: The syntax parsed by the program itself only includes division of certain sections in the text; this is because most of the parsing is handled by built-in Fish data-structures.  
-- **Inescapable**: The only escaping possible in the self-parsed syntax is ` | ` splitting and `+` prefixes (in case of fixed number of arguments) in headers; these are very unlikely to literally appear in those, and hence, escaping is not an option.
+Limited
+:   The syntax parsed by the program itself only includes division of certain sections in the text; this is because most of the parsing is handled by built-in Fish data-structures.  
+
+Inescapable
+:   The only escaping possible in the self-parsed syntax is ` | ` splitting and `+` prefixes (in case of fixed number of arguments) in headers; these are very unlikely to literally appear in those, and hence, escaping is not an option.
