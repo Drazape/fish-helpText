@@ -1,3 +1,6 @@
 function _help-text_internal_heading --description='Create headings for headers'
-    echo (set_color --bold --underline{,-color=brblue} blue)"$argv"(set_color --reset brblue):(set_color --reset)
+    echo \n(
+        format text color blue (
+            format line under --bright blue "$argv"
+        ))(format text color --bright blue ':')
 end

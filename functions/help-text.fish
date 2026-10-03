@@ -59,7 +59,7 @@ function help-text --description='Generate help reference text'
 
     # Output
     ## Description
-    echo (format text color magenta --bright {$command_description})\n
+    echo (format text color magenta --bright {$command_description})
 
     ## Arguments
     ### Sub-Command
