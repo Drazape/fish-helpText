@@ -2,7 +2,8 @@ function _help-text_internal_largest-length --description='Find the string with 
     set --function -- lengths (string length -- {$argv})
     set --function -- big {$lengths[1]}
     for length in {$lengths}
-        test {$big} -lt {$length} && set --function -- big {$length}
+        test {$big} -lt {$length} &&
+            set --function -- big {$length}
     end
     echo {$big}
 end

@@ -15,7 +15,15 @@ function help-text --description='Generate help reference text'
     begin
         set -- arg_count (count {$argv})
         if test {$arg_count} -ne 1
-            echo (format text dim (status current-function) (format text color white ':')) expected (format text bold 1)(format text color white '/')(format text bold 2) 'positional arguments; got' (format text italics {$arg_count})
+            echo (format text dim (
+                    status current-function) (
+                format text color white ':')
+            ) expected (
+            format text bold 1
+            )(format text color white '/')(
+            format text bold 2
+            ) 'positional arguments; got' (
+            format text italics {$arg_count})
             return 1
         end
     end
@@ -25,7 +33,15 @@ function help-text --description='Generate help reference text'
     if set --query --local -- _flag_link
         set --local -- command {$_flag_link[1]}
         if ! type --query -- {$command}
-            echo (format text dim (status current-function) (format text color white ':')) unknown (format text italics 'link') command: (format background black --bright (format text color red {$command}))
+            echo (format text dim (
+                    status current-function) (
+                    format text color white ':')
+                ) unknown (
+                format text italics 'link'
+                ) command: (
+                    format background black --bright (
+                        format text color red {$command})
+                )
             return 2
         end
     end
@@ -103,7 +119,13 @@ function help-text --description='Generate help reference text'
             else
                 echo -n (_help-text_internal_bullet (math {$i} - (count {$arg_names}) - 1))
             end
-            echo \ (format text bold (format text color green (string pad --right --width={$largest_name_len} -- (hypertext positional {$arg_names[$i]})))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (
+                format text bold (
+                    format text color green (
+                        string pad --right --width={$largest_name_len} -- (
+                            hypertext positional {$arg_names[$i]}
+            )))) {$sep} (
+                _help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
@@ -129,7 +151,10 @@ function help-text --description='Generate help reference text'
         end
         set --local -- largest_longFlag_len (_help-text_internal_largest-length {$long_flags})
 
-        echo (string repeat 3 \ )(_help-text_internal_title (string pad --center --width={$largest_longFlag_len} long)) (_help-text_internal_title short)
+        echo (string repeat 3 ' '
+            )(_help-text_internal_title (
+                string pad --center --width={$largest_longFlag_len} long)
+            ) (_help-text_internal_title short)
         # print
         for i in (seq 1 (count {$_flag_flag}))
             set --local -- long_flag {$long_flags[$i]}
@@ -138,7 +163,13 @@ function help-text --description='Generate help reference text'
                 set -- short_flag (format url {$url} {$short_flag})
                 set -- long_flag (format url {$url} {$long_flag})
             end
-            echo \ (_help-text_internal_bullet •) (format text italics (format text color green (string pad --center --width={$largest_longFlag_len} {$long_flag})\ (string pad --center --width=5 {$short_flag}))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
+            echo \ (_help-text_internal_bullet •
+                ) (format text italics (
+                    format text color green (
+                        string pad --center --width={$largest_longFlag_len} {$long_flag}
+                    )\ (
+                    string pad --center --width=5 {$short_flag}
+                ))) {$sep} (_help-text_internal_italicize-names {$arg_names} {$descriptions[$i]})
         end
     end
 
