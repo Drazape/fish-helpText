@@ -12,7 +12,7 @@ Dynamically hyperlink help-text headers to documentation
 | `link` |  `l`  |    None   |
 
 # Working
-To hyperlink headers to an externla documentation, this switch is used to do that intuitively, and dynamically.
+To hyperlink headers to an external documentation, this switch is used to do that intuitively, and dynamically.
 
 This flag mandatorily accepts a value. This value is a [command](#command) which ran multiple times throughout the display of the help-text.  
 This command has a strict input and output format that it is required to comply with, and is passed with the necessary data to generate the URL for the specific header. The command is ran each time a header is displayed, and the output is used to hyperlink the header to the documentation.

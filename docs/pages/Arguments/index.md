@@ -24,11 +24,11 @@ Optional arguments which modify the behavior of the command.
 ##### Value-less
 Flags that don't accept or require a value can simply be passed like *Positional* arguments — with the limitation that each flag must be passed before `--` is.
 ##### Value
-One or more strings requseted by the flag
+One or more strings requested by the flag
 ###### Single
 If the flag accepts a single value, use the flag once. Multiple uses overwrite the previous value.
 ###### Multiple
-Instead of passing the flag multiple times, you can simply use `{}` with the `,` delimeter to pass multiple *values*.
+Instead of passing the flag multiple times, you can simply use `{}` with the `,` delimiter to pass multiple *values*.
 ```fish {title="Syntax" .no-copy}
 help-text --<long-flag>={
     …,
@@ -56,7 +56,7 @@ help-text --<flag>='<header> | <description>'
 - [Positionals](Switches/Arguments/Positional.md){data-preview}
 - [Flags](Switches/Arguments/Flag.md){data-preview}
 
-!!! info "Dimmed Puntuation"
+!!! info "Dimmed Punctuation"
     The punctuation (`;` `,` `.`) in the descriptions on each of the switches is automatically dimmed
 
 ### Features

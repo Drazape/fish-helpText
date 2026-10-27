@@ -15,7 +15,7 @@ Colored text
 :   Each pixel is taken special care of
 
 Minuscule details
-:   You will notice that the color of `:` and the underlines is slightly lighter than the main text. The pointers are dimmed to avoid unnecesary attention.
+:   You will notice that the color of `:` and the underlines is slightly lighter than the main text. The pointers are dimmed to avoid unnecessary attention.
 
 Section division
 :   Each section is a [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself "reducing repetition of information"){data-preview} division by categories
@@ -27,7 +27,7 @@ Multiple sorts of positional arguments supported
 :   Programs that take fixed or variable number of arguments — or even a mix of both — are all supported
 
 Automatically formatted description substrings
-:   The Positional Arguments mentioned are in descriptions are automatically italicized, while punchuation is slightly dimmed
+:   The Positional Arguments mentioned are in descriptions are automatically italicized, while punctuation is slightly dimmed
 
 Clean [syntax](Arguments/index.md){data-preview}
 :   It uses a very easy and readable syntax, and avoids it by using Fish's built-in data structures where possible

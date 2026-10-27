@@ -1,0 +1,16 @@
+lucide
+subAbbr
+substrings
+Discoverability
+helpText
+Readme
+NixOS
+Linkers
+Pre
+discoverable
+equifinal
+Positionals
+positionals
+mandatorily
+codebase
+Zensical

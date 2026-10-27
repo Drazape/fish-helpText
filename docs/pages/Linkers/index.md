@@ -9,7 +9,7 @@ Linkers are commands which [link](../Arguments/Switches/Hyperlink.md){data-previ
 They are simply passed with the details of the headers, and return a URL that is then hyperlinked to the respective header.
 
 ## Distribution
-Following is information on the distribution of the linkers
+Following is information on the distribution of the Linkers
 ### Comparison
 |  ~  | [Official Repository](#official-repository){data-preview} | [3rd-party](#3rd-party){data-preview} |
 | :-: | :-----------------------------------------: | ---------------------- |
@@ -23,7 +23,7 @@ Different methods of distribution available to packagers
 #### Official Repository
 Each linker is a single function in the repository which provides URLs for the specific documentation website/framework it corresponds to.  
 
-!!! tip "Gaze at Pre-existing linkers"
+!!! tip "Gaze at Pre-existing Linkers"
     Have a look at other packages defined in the [repository](https://github.com/Drazape/fish-helpText/tree/main/functions/help-text/hyper/ "Official Hyper-linker Repository"){data-preview} before pushing your own here.
 
 !!! warning "Anti-legacy"

@@ -20,8 +20,8 @@ There are 4 Types of positional arguments, each having a different syntax used 
 When all the arguments appear a fixed number of time, then the *header* is simply a string, without any special syntax (prefix).
 
 
-### Variable [^arg-dir]
-If there are variable arguments, prepend the variable argument's position [^single-vararg] with a `+`. This will affect the index of all the positionals that follows. [^index]
+### Variable [^argument-directory]
+If there are variable arguments, prepend the variable argument's position [^single-variable-argument] with a `+`. This will affect the index of all the positionals that follows. [^index]
 
 !!! tip "Experiment the `+` prefix"
     Try prefixing `+` on different positions to know how it would affect the index counts
@@ -48,6 +48,6 @@ Don't pass the *Positional* switch if positional arguments aren't accepted.
 Each header matched in the *description*s is automatically italicized
 
 
-[^single-vararg]: There can only be one variable positional argument because there is no way of determining if an argument is a fixed argument or a variable argument, and if a variable argument, then which one.
+[^single-variable-argument]: There can only be one variable positional argument because there is no way of determining if an argument is a fixed argument or a variable argument, and if a variable argument, then which one.
 [^index]: The “index” of the variable argument will simply be a `+`, while the followed positionals will be negatively indexed, and the rest of the positionals (before the variable positionals) will be positively indexed (like they do without any variable argument).
-[^arg-dir]: The direction of the arguments can be both from the left and the right. This determines if the index value displayed to the user would be positive (left) or negative. Negative indexes are the only choice for arguments followed by variable arguments.
+[^argument-directory]: The direction of the arguments can be both from the left and the right. This determines if the index value displayed to the user would be positive (left) or negative. Negative indexes are the only choice for arguments followed by variable arguments.
