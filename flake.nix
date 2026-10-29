@@ -18,6 +18,13 @@
 
 						src = ./.;
 						installPhase = ''${lib.meta.getExe pkgs.fish} --no-config --private -- ${./install.fish} ${./.}'';
+
+						meta = {
+							description = "Fish plugin: generate elegant help reference texts";
+							homepage = "https://github.com/Drazape/fish-helpText";
+							license = lib.licenses.mit;
+							platforms = lib.platforms.linux;
+						};
 					};
 				};
 			};
